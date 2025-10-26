@@ -3,7 +3,7 @@ const express = require('express');
 const axios = require('axios');
 
 const app = express();
-const PORT = 3000;
+const PORT = 8080;
 
 // Change this to your external server URL
 const TARGET_SERVER = 'http://100.94.216.120:5678/webhook/cf0bbfae-4acc-4663-9e95-af65c043e7ca'; 
@@ -45,6 +45,10 @@ function createDayEndpoints(day) {
 
 // Generate endpoints for all days
 days.forEach(createDayEndpoints);
+
+app.get('/status', (req, res) => {
+  res.json({ status: 'ok' });
+});
 
 app.listen(PORT, () => {
   console.log(`✅ Server running on http://localhost:${PORT}`);
